@@ -1,0 +1,25 @@
+name: Tests
+
+on:
+  pull_request:
+    paths: ["Casks/**"]
+  push:
+    branches: [main]
+    paths: ["Casks/**"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Tap checkout
+        run: brew tap thurstonsand/tap "$GITHUB_WORKSPACE"
+      - name: Audit cask
+        run: brew audit --strict --online --cask thurstonsand/tap/wt
+      - name: Install cask
+        run: brew install --cask thurstonsand/tap/wt
+      - name: Verify binary
+        run: wt --version
