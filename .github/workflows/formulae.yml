@@ -17,6 +17,8 @@ jobs:
       - uses: actions/checkout@v7
       - name: Tap checkout
         run: brew tap thurstonsand/tap "$GITHUB_WORKSPACE"
+      - name: Trust tap
+        run: brew trust thurstonsand/tap
       - name: Audit formulae
         run: |
           brew audit --strict --online thurstonsand/tap/ghosttykit
