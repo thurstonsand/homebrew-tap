@@ -1,0 +1,33 @@
+name: Formulae
+
+on:
+  pull_request:
+    paths: ["Formula/**"]
+  push:
+    branches: [main]
+    paths: ["Formula/**"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Tap checkout
+        run: brew tap thurstonsand/tap "$GITHUB_WORKSPACE"
+      - name: Audit formulae
+        run: |
+          brew audit --strict --online thurstonsand/tap/ghosttykit
+          brew audit --strict --online thurstonsand/tap/ghosttykit-nightly
+      - name: Install stable formula
+        run: brew install thurstonsand/tap/ghosttykit
+      - name: Test stable formula
+        run: brew test thurstonsand/tap/ghosttykit
+      - name: Uninstall stable formula
+        run: brew uninstall thurstonsand/tap/ghosttykit
+      - name: Install nightly formula
+        run: brew install thurstonsand/tap/ghosttykit-nightly
+      - name: Test nightly formula
+        run: brew test thurstonsand/tap/ghosttykit-nightly
