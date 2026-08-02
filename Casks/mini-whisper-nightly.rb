@@ -3,7 +3,7 @@
 
 cask "mini-whisper-nightly" do
   version "0.1.1-dev-30736776450-d3f74e2"
-  sha256 "3176b7eb0bcc0b2f2db3d3ada67ba1df31f69b8acccaad2e920983a20ca25130"
+  sha256 "4ef73742a7b3e851fc620f600fda895b1f3b322f76b6fc9ad0073f6afd441e36"
 
   url "https://github.com/thurstonsand/mini-whisper/releases/download/nightly-0.1.1-dev-30736776450-d3f74e2/MiniWhisper_0.1.1-dev-30736776450-d3f74e2_darwin_arm64.zip"
   name "MiniWhisper"
