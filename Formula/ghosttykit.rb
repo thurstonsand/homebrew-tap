@@ -1,7 +1,6 @@
 class Ghosttykit < Formula
   desc "Ghostty terminal companion toolkit"
   homepage "https://github.com/thurstonsand/ghosttykit"
-  version "0.6.0"
   license "MIT"
 
   on_macos do
