@@ -4,22 +4,21 @@ class Ghosttykit < Formula
   license "MIT"
 
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/thurstonsand/ghosttykit/releases/download/v0.6.0/ghosttykit_0.6.0_darwin_arm64.zip"
-      sha256 "af8b2031b4e2cbe929c989d892fc787e106ba9a47efe30ecec839803f2c09b9f"
-    else
-      url "https://github.com/thurstonsand/ghosttykit/releases/download/v0.6.0/ghosttykit_0.6.0_darwin_amd64.zip"
-      sha256 "03c19cec78ca20976803ccf5836822776ae8d91a231d165e556cef2c516f0256"
+    depends_on arch: :arm64
+
+    on_arm do
+      url "https://github.com/thurstonsand/ghosttykit/releases/download/v0.7.0/ghosttykit_0.7.0_darwin_arm64.zip"
+      sha256 "9a26db7a9ab3614ba19d32410aefdaa31b69576456c91fc6627ea6215e1c7e78"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/thurstonsand/ghosttykit/releases/download/v0.6.0/ghosttykit_0.6.0_linux_arm64.zip"
-      sha256 "7f913cecf812d220fba349dd6cdc734f51b4dcaa899eeae8ce62f3ed6b3857cd"
+      url "https://github.com/thurstonsand/ghosttykit/releases/download/v0.7.0/ghosttykit_0.7.0_linux_arm64.zip"
+      sha256 "1605d8bd2576322b7f52127082f9e626e1cc83bde4af14cd2b28e727d2bc8fd3"
     else
-      url "https://github.com/thurstonsand/ghosttykit/releases/download/v0.6.0/ghosttykit_0.6.0_linux_amd64.zip"
-      sha256 "511a6e4af805addbffff8fd0558bf47182939ec06e00655326c8550a79b2ea6e"
+      url "https://github.com/thurstonsand/ghosttykit/releases/download/v0.7.0/ghosttykit_0.7.0_linux_amd64.zip"
+      sha256 "2f0dd3803004871f72b8406a3125eb69b782cce30ec98995e6a1f6b7fb774373"
     end
   end
 
@@ -63,7 +62,7 @@ class Ghosttykit < Formula
   end
 
   test do
-    assert_match "gty 0.6.0 protocol=", shell_output("#{bin}/gty version")
-    assert_match "ghosttykitd 0.6.0", shell_output("#{bin}/ghosttykitd --version") if OS.mac?
+    assert_match "gty 0.7.0 protocol=", shell_output("#{bin}/gty version")
+    assert_match "ghosttykitd 0.7.0", shell_output("#{bin}/ghosttykitd --version") if OS.mac?
   end
 end
