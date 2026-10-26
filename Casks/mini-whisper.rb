@@ -2,17 +2,16 @@
 # frozen_string_literal: true
 
 cask "mini-whisper" do
-  version "0.2.0"
-  sha256 "605d59ffafc0aaf7a3725adde0613b5099efbea7896f8f9479144fa0277479ca"
+  version "0.3.0"
+  sha256 "79ed0bd5b9f79727c34464b79ac4c3f3e3671d5b3563bec02a0f62f16eced9e2"
 
-  url "https://github.com/thurstonsand/mini-whisper/releases/download/v0.2.0/MiniWhisper_0.2.0_darwin_arm64.zip"
+  url "https://github.com/thurstonsand/mini-whisper/releases/download/v0.3.0/MiniWhisper_0.3.0_darwin_arm64.zip"
   name "MiniWhisper"
   desc "Local speech-to-text dictation"
   homepage "https://github.com/thurstonsand/mini-whisper"
 
-  conflicts_with cask: "mini-whisper-nightly"
   depends_on arch: :arm64
-  depends_on macos: :sonoma
+  depends_on macos: :tahoe
 
   app "MiniWhisper.app"
 
