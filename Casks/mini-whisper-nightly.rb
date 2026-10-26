@@ -2,10 +2,10 @@
 # frozen_string_literal: true
 
 cask "mini-whisper-nightly" do
-  version "0.2.1-nightly-40281748274-78f175f"
-  sha256 "5c71e98796eb108405993b762147f517c93ca6a91b9f314e6d1bd961a106ef6a"
+  version "0.2.1-nightly-40331089727-37642c1"
+  sha256 "adda54a09faa48b049e68cb23f642764e1823ee044a10affcfb28ae8426c77e6"
 
-  url "https://github.com/thurstonsand/mini-whisper/releases/download/nightly-0.2.1-nightly-40281748274-78f175f/MiniWhisper_0.2.1-nightly-40281748274-78f175f_darwin_arm64.zip"
+  url "https://github.com/thurstonsand/mini-whisper/releases/download/nightly-0.2.1-nightly-40331089727-37642c1/MiniWhisper_0.2.1-nightly-40331089727-37642c1_darwin_arm64.zip"
   name "MiniWhisper Nightly"
   desc "Local speech-to-text dictation"
   homepage "https://github.com/thurstonsand/mini-whisper"
