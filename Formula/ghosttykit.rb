@@ -7,18 +7,18 @@ class Ghosttykit < Formula
     depends_on arch: :arm64
 
     on_arm do
-      url "https://github.com/thurstonsand/ghosttykit/releases/download/v0.7.1/ghosttykit_0.7.1_darwin_arm64.zip"
-      sha256 "7dda671dcaeec6f4c7a0fe98f80e1242b655ba0e3db406cb14a9c04d72e7b4d7"
+      url "https://github.com/thurstonsand/ghosttykit/releases/download/v0.8.0/ghosttykit_0.8.0_darwin_arm64.zip"
+      sha256 "ae6f6102abab73d1a57f87459ed690844caf14f3fdf8e1ba1f28cf5e03769a44"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/thurstonsand/ghosttykit/releases/download/v0.7.1/ghosttykit_0.7.1_linux_arm64.zip"
-      sha256 "8970ef57eb3129cc5b43f83c6432e8acc6456a93599b20e1377e4b0a8041860d"
+      url "https://github.com/thurstonsand/ghosttykit/releases/download/v0.8.0/ghosttykit_0.8.0_linux_arm64.zip"
+      sha256 "ba768cf764d229c9a55e33a030367957491a34ce7128085e63800269c9f3eac3"
     else
-      url "https://github.com/thurstonsand/ghosttykit/releases/download/v0.7.1/ghosttykit_0.7.1_linux_amd64.zip"
-      sha256 "828c76fb7294c1cbe85e2800ac22913afb7a84b4a740307401655a5679796909"
+      url "https://github.com/thurstonsand/ghosttykit/releases/download/v0.8.0/ghosttykit_0.8.0_linux_amd64.zip"
+      sha256 "03f0bfc0c34b38b18f0a5a5a995642397fdf37cd6a5f161706ace5b7073c0769"
     end
   end
 
@@ -62,7 +62,7 @@ class Ghosttykit < Formula
   end
 
   test do
-    assert_match "gty 0.7.1 protocol=", shell_output("#{bin}/gty version")
-    assert_match "ghosttykitd 0.7.1", shell_output("#{bin}/ghosttykitd --version") if OS.mac?
+    assert_match "gty 0.8.0 protocol=", shell_output("#{bin}/gty version")
+    assert_match "ghosttykitd 0.8.0", shell_output("#{bin}/ghosttykitd --version") if OS.mac?
   end
 end
