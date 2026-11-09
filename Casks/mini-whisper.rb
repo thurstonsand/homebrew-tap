@@ -5,10 +5,15 @@ cask "mini-whisper" do
   version "0.3.0"
   sha256 "79ed0bd5b9f79727c34464b79ac4c3f3e3671d5b3563bec02a0f62f16eced9e2"
 
-  url "https://github.com/thurstonsand/mini-whisper/releases/download/v0.3.0/MiniWhisper_0.3.0_darwin_arm64.zip"
+  url "https://github.com/thurstonsand/mini-whisper/releases/download/v#{version}/MiniWhisper_#{version}_darwin_arm64.zip"
   name "MiniWhisper"
   desc "Local speech-to-text dictation"
   homepage "https://github.com/thurstonsand/mini-whisper"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   depends_on arch: :arm64
   depends_on macos: :tahoe
@@ -16,5 +21,10 @@ cask "mini-whisper" do
   app "MiniWhisper.app"
 
   # This also removes the downloaded speech model.
-  zap trash: "~/Library/Application Support/MiniWhisper"
+  zap trash: [
+    "~/Library/Application Support/MiniWhisper",
+    "~/Library/Caches/com.thurstonsand.MiniWhisper",
+    "~/Library/HTTPStorages/com.thurstonsand.MiniWhisper",
+    "~/Library/Preferences/com.thurstonsand.MiniWhisper.plist",
+  ]
 end

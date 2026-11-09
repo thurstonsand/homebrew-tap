@@ -5,7 +5,7 @@ cask "mini-whisper-nightly" do
   version "0.3.1-nightly-42666790174-7774b10"
   sha256 "d86f242c29778c1cbd221c0d450e8b31c4ff2da7e1ad3313369496f82547483f"
 
-  url "https://github.com/thurstonsand/mini-whisper/releases/download/nightly-0.3.1-nightly-42666790174-7774b10/MiniWhisper_0.3.1-nightly-42666790174-7774b10_darwin_arm64.zip"
+  url "https://github.com/thurstonsand/mini-whisper/releases/download/nightly-#{version}/MiniWhisper_#{version}_darwin_arm64.zip"
   name "MiniWhisper Nightly"
   desc "Local speech-to-text dictation"
   homepage "https://github.com/thurstonsand/mini-whisper"
