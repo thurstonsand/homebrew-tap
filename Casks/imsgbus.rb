@@ -3,21 +3,24 @@ cask "imsgbus" do
   version "0.2.13"
 
   on_macos do
-    depends_on arch: :arm64
     sha256 "d6a1bfdb9a99425b319c71054306a62efc52c918eb2029fb329617ba9f183fcd"
+
     url "https://github.com/thurstonsand/imsgbus/releases/download/v#{version}/imsgbus_#{version}_darwin_arm64.tar.gz"
+
+    depends_on arch: :arm64
   end
 
   name "imsgbus"
-  desc "iMessage for Beeper and coding agents, served from a Mac"
+  desc "Bridges iMessage to Beeper and coding agents"
   homepage "https://github.com/thurstonsand/imsgbus"
 
   livecheck do
     skip "Auto-generated on release."
   end
+
   depends_on :macos
 
   binary "imsgbus"
 
-  # No zap stanza required
+  zap :not_required
 end
