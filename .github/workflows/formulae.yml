@@ -11,28 +11,43 @@ on:
 permissions:
   contents: read
 
+# Each run audits the whole tap, so a newer push supersedes an older run.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     runs-on: macos-latest
+    timeout-minutes: 20
     env:
       HOMEBREW_GITHUB_API_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Tap checkout
         run: brew tap thurstonsand/tap "$GITHUB_WORKSPACE"
       - name: Trust tap
         run: brew trust thurstonsand/tap
+      # Every formula by name: `brew audit --tap` skips what this platform cannot install.
+      - name: List formulae
+        run: |
+          set -euo pipefail
+          formulae=()
+          for formula in Formula/*.rb; do
+            formulae+=("thurstonsand/tap/$(basename "${formula}" .rb)")
+          done
+          echo "FORMULAE=${formulae[*]}" >> "${GITHUB_ENV}"
       - name: Audit formulae
         run: |
-          brew audit --strict --online thurstonsand/tap/ghosttykit
-          brew audit --strict --online thurstonsand/tap/ghosttykit-nightly
-      - name: Install stable formula
-        run: brew install thurstonsand/tap/ghosttykit
-      - name: Test stable formula
-        run: brew test thurstonsand/tap/ghosttykit
-      - name: Uninstall stable formula
-        run: brew uninstall thurstonsand/tap/ghosttykit
-      - name: Install nightly formula
-        run: brew install thurstonsand/tap/ghosttykit-nightly
-      - name: Test nightly formula
-        run: brew test thurstonsand/tap/ghosttykit-nightly
+          # shellcheck disable=SC2086 # FORMULAE is a space-separated list of names.
+          brew audit --strict --online --formula ${FORMULAE}
+      # Formulae can conflict with each other (ghosttykit and ghosttykit-nightly both install gty),
+      # so each is installed, tested and removed before the next.
+      - name: Install and test formulae
+        run: |
+          set -euo pipefail
+          for name in ${FORMULAE}; do
+            brew install "${name}"
+            brew test "${name}"
+            brew uninstall "${name}"
+          done

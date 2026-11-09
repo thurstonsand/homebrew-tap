@@ -11,20 +11,39 @@ on:
 permissions:
   contents: read
 
+# Each run audits the whole tap, so a newer push supersedes an older run.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     runs-on: macos-latest
+    timeout-minutes: 20
     env:
       HOMEBREW_GITHUB_API_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Tap checkout
         run: brew tap thurstonsand/tap "$GITHUB_WORKSPACE"
       - name: Trust tap
         run: brew trust thurstonsand/tap
-      - name: Audit cask
-        run: brew audit --strict --online --cask thurstonsand/tap/wt
-      - name: Install cask
-        run: brew install --cask thurstonsand/tap/wt
-      - name: Verify binary
+      # Every cask by name: `brew audit --tap` skips casks this platform cannot install.
+      - name: List casks
+        run: |
+          set -euo pipefail
+          casks=()
+          for cask in Casks/*.rb; do
+            casks+=("thurstonsand/tap/$(basename "${cask}" .rb)")
+          done
+          echo "CASKS=${casks[*]}" >> "${GITHUB_ENV}"
+      - name: Audit casks
+        run: |
+          # shellcheck disable=SC2086 # CASKS is a space-separated list of names.
+          brew audit --strict --online --cask ${CASKS}
+      - name: Install casks
+        run: |
+          # shellcheck disable=SC2086 # CASKS is a space-separated list of names.
+          brew install --cask ${CASKS}
+      - name: Verify binaries
         run: wt --version
