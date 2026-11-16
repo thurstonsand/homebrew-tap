@@ -1,25 +1,25 @@
 class GhosttykitNightly < Formula
   desc "Ghostty terminal companion toolkit"
   homepage "https://github.com/thurstonsand/ghosttykit"
-  version "0.8.2-dev-43884269766-188ece6"
+  version "0.8.2-dev-43895391528-8f13dad"
   license "MIT"
 
   on_macos do
     depends_on arch: :arm64
 
     on_arm do
-      url "https://github.com/thurstonsand/ghosttykit/releases/download/nightly-0.8.2-dev-43884269766-188ece6/ghosttykit_0.8.2-dev-43884269766-188ece6_darwin_arm64.zip"
-      sha256 "99851774756acea90771de527531371e340da6d0f35b3d4ef425d01080e456e6"
+      url "https://github.com/thurstonsand/ghosttykit/releases/download/nightly-0.8.2-dev-43895391528-8f13dad/ghosttykit_0.8.2-dev-43895391528-8f13dad_darwin_arm64.zip"
+      sha256 "18bf0297e7270593b923dc4be16ff79291ade4b92b51d51561c9fec707d94631"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/thurstonsand/ghosttykit/releases/download/nightly-0.8.2-dev-43884269766-188ece6/ghosttykit_0.8.2-dev-43884269766-188ece6_linux_arm64.zip"
-      sha256 "63e973ab161fef2b63cd468c57900e0412fe85d8951e1f0937f85c8da8fb91a8"
+      url "https://github.com/thurstonsand/ghosttykit/releases/download/nightly-0.8.2-dev-43895391528-8f13dad/ghosttykit_0.8.2-dev-43895391528-8f13dad_linux_arm64.zip"
+      sha256 "83042b849793415e50c0c6dd49f0b767ad9cf11f04a8fed1ac0fc0d1a463c47a"
     else
-      url "https://github.com/thurstonsand/ghosttykit/releases/download/nightly-0.8.2-dev-43884269766-188ece6/ghosttykit_0.8.2-dev-43884269766-188ece6_linux_amd64.zip"
-      sha256 "977c2483e5afe6cfb240a9404fe76e8bebc11c37267f6a93aece36a1509d2de5"
+      url "https://github.com/thurstonsand/ghosttykit/releases/download/nightly-0.8.2-dev-43895391528-8f13dad/ghosttykit_0.8.2-dev-43895391528-8f13dad_linux_amd64.zip"
+      sha256 "8a12c7c78aa91c740982ca8fffe43ce80887bf630011a6be04a3c6c562f1b432"
     end
   end
 
@@ -63,7 +63,7 @@ class GhosttykitNightly < Formula
   end
 
   test do
-    assert_match "gty 0.8.2-dev-43884269766-188ece6 protocol=", shell_output("#{bin}/gty version")
-    assert_match "ghosttykitd 0.8.2-dev-43884269766-188ece6", shell_output("#{bin}/ghosttykitd --version") if OS.mac?
+    assert_match "gty 0.8.2-dev-43895391528-8f13dad protocol=", shell_output("#{bin}/gty version")
+    assert_match "ghosttykitd 0.8.2-dev-43895391528-8f13dad", shell_output("#{bin}/ghosttykitd --version") if OS.mac?
   end
 end
