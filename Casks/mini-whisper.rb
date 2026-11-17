@@ -2,8 +2,8 @@
 # frozen_string_literal: true
 
 cask "mini-whisper" do
-  version "0.3.0"
-  sha256 "79ed0bd5b9f79727c34464b79ac4c3f3e3671d5b3563bec02a0f62f16eced9e2"
+  version "0.4.0"
+  sha256 "18d369469ebfa7c52a96994cd31ee4436637f3a6462d3c7843e87d8692c7892a"
 
   url "https://github.com/thurstonsand/mini-whisper/releases/download/v#{version}/MiniWhisper_#{version}_darwin_arm64.zip"
   name "MiniWhisper"
