@@ -2,8 +2,8 @@
 # frozen_string_literal: true
 
 cask "mini-whisper-nightly" do
-  version "0.4.1-nightly-45447940167-62b7918"
-  sha256 "c5d40c55bb67c1cfcf6e339a1c1adb2f81d2b1965851477a7952372c5911d786"
+  version "0.5.1-nightly-45465015166-a4ce13a"
+  sha256 "436866de7e3a56fea19a75617bc56e7a868e5ad2467fba141687e37c77fdb746"
 
   url "https://github.com/thurstonsand/mini-whisper/releases/download/nightly-#{version}/MiniWhisper_#{version}_darwin_arm64.zip"
   name "MiniWhisper Nightly"
