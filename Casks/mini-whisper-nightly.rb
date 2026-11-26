@@ -2,8 +2,8 @@
 # frozen_string_literal: true
 
 cask "mini-whisper-nightly" do
-  version "0.5.2-nightly-45530514292-9280733"
-  sha256 "c385e9bcbdf982897a9e311d910b752595a419e8d446473d105d738e0d4716e8"
+  version "0.5.2-nightly-45885183141-b2cb64a"
+  sha256 "b395d945bbc21df4c5bf81c67c7882523635db99a7ef584205c24916672bf25f"
 
   url "https://github.com/thurstonsand/mini-whisper/releases/download/nightly-#{version}/MiniWhisper_#{version}_darwin_arm64.zip"
   name "MiniWhisper Nightly"
@@ -18,6 +18,8 @@ cask "mini-whisper-nightly" do
   depends_on macos: :tahoe
 
   app "MiniWhisper Nightly.app"
+
+  uninstall quit: "com.thurstonsand.MiniWhisper.nightly"
 
   # This also removes the downloaded speech model.
   zap trash: [
